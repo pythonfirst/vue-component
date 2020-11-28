@@ -3,7 +3,9 @@
     :class="'i-button-' + size"
     :disabled="disabled"
     style="backgroundColor: yellow; height: 30px;"
+    @click="handleClick"
   >
+    <slot name="icon"></slot>
     <slot></slot>
   </button>
 </template>
@@ -25,6 +27,12 @@ export default {
   },
   created() {
     console.log(this.$attrs);
+  },
+  methods: {
+    handleClick(event) {
+      console.log("event", event, this.$parent.msg); // 通过this.$parent获取父组件实例及其数据
+      this.$emit("on-click", event);
+    }
   }
 };
 </script>

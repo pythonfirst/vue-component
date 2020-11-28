@@ -1,13 +1,16 @@
 <template>
   <div class="hello">
     <i-button
+      ref="button"
       size="large"
       :disabled="false"
       type="hello"
       style="backgroundColor: blue;"
       class="hello"
+      @on-click="handleClick"
     >
       button
+      <p slot="icon">h</p>
     </i-button>
   </div>
 </template>
@@ -24,6 +27,12 @@ export default {
   components: { "i-button": Button },
   props: {
     msg: String
+  },
+  methods: {
+    handleClick(e) {
+      console.log(this.$refs.button.size); // 通过$refs获取Button组件及其数据
+      console.log("e", e);
+    }
   }
 };
 </script>
