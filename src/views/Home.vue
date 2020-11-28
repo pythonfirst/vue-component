@@ -13,6 +13,11 @@ export default {
   name: "Home",
   components: {
     HelloWorld
+  },
+  provide() {
+    return {
+      foo: "foo"
+    };
   }
 };
 </script>

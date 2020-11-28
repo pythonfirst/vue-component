@@ -14,6 +14,7 @@
 export default {
   name: "i-button",
   inheritAttrs: false,
+  inject: ["foo"],
   props: {
     size: {
       validator(value) {
@@ -26,11 +27,11 @@ export default {
     }
   },
   created() {
-    console.log(this.$attrs);
+    console.log(this.$attrs, this.foo);
   },
   methods: {
     handleClick(event) {
-      console.log("event", event, this.$parent.msg); // 通过this.$parent获取父组件实例及其数据
+      console.log("event", event, this.$parent.$options); // 通过this.$parent获取父组件实例及其数据
       this.$emit("on-click", event);
     }
   }
