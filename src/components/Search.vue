@@ -25,6 +25,7 @@
 import ZInput from "./Input";
 import Suggestion from "./Suggestion";
 export default {
+  name: "Search",
   components: {
     ZInput,
     Suggestion
