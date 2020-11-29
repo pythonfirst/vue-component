@@ -71,7 +71,7 @@ export default {
       console.log("======触发了select回调事件======", e);
       this.value = e.value;
       this.index = e.index;
-      this.submit();
+      // this.submit();
       this.$emit("select", e.value);
     },
     handleInput(value) {
@@ -88,6 +88,8 @@ export default {
       this.$emit("blur", this.value, e);
     },
     submit() {
+      console.log("======触发提交事件======");
+      this.value = "";
       this.$emit("submit", this.value);
     }
   }
