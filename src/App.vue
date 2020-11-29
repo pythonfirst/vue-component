@@ -1,32 +1,39 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+    <div class="position">占位</div>
+    <Search :suggestions="suggestions"></Search>
   </div>
 </template>
-
-<style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+<script>
+import Search from "./components/Search";
+export default {
+  components: { Search },
+  data() {
+    return {
+      suggestions: [
+        "北京",
+        "上海",
+        "北京今天是个艳阳天北京今天是个艳阳天",
+        "广州",
+        "深圳",
+        "杭州",
+        "武汉",
+        "成都",
+        "西安",
+        "重庆",
+        "南京",
+        "苏州",
+        "青岛",
+        "大连",
+        "郑州"
+      ]
+    };
   }
+};
+</script>
+<style scoped>
+.position {
+  width: 100%;
+  height: 500px;
 }
 </style>

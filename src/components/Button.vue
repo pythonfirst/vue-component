@@ -28,11 +28,14 @@ export default {
   },
   created() {
     console.log(this.$attrs, this.foo);
+    this.$on("on-click", function(msg) {
+      console.log("msg", msg);
+    });
   },
   methods: {
     handleClick(event) {
-      console.log("event", event, this.$parent.$options); // 通过this.$parent获取父组件实例及其数据
-      this.$emit("on-click", event);
+      console.log("event", event, this.$parent.$options.name); // 通过this.$parent获取父组件实例及其数据
+      this.$emit("on-click", "hi");
     }
   }
 };
