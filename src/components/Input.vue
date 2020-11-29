@@ -1,16 +1,19 @@
 <template>
   <div class="container">
-    <input
-      ref="input"
-      class="input"
-      v-bind="$attrs"
-      :type="type"
-      :disabled="disabled"
-      @input="handleInput"
-      @focus="handleFocus"
-      @blur="handleBlur"
-      @change="handleChange"
-    />
+    <div>
+      <input
+        ref="input"
+        class="input"
+        v-bind="$attrs"
+        :type="type"
+        :disabled="disabled"
+        @input="handleInput"
+        @focus="handleFocus"
+        @blur="handleBlur"
+        @change="handleChange"
+      />
+      <span><slot name="icon"></slot></span>
+    </div>
     <div class="suffix" v-show="focused">
       <slot name="append"></slot>
     </div>
@@ -81,8 +84,11 @@ export default {
 .container {
   width: 200px;
 }
+.container div:first-child {
+  position: relative;
+}
 .input {
-  /* -webkit-appearance: none; */
+  -webkit-appearance: none;
   background-color: #fff;
   background-image: none;
   border-radius: 4px;
