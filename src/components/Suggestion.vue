@@ -20,6 +20,14 @@ export default {
     data: {
       type: Array,
       default: () => []
+    },
+    index: {
+      type: Number
+    }
+  },
+  watch: {
+    index(val) {
+      this.selectedIndex = val;
     }
   },
   data() {
@@ -31,7 +39,7 @@ export default {
     handleSelect(value, index) {
       console.log("value", value, index);
       this.selectedIndex = index;
-      this.$emit("select", value);
+      this.$emit("select", { value, index });
     }
   }
 };

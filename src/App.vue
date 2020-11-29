@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Search :suggestions="suggestions"></Search>
+    <Search :suggestions="suggestions" @submit="handleSubmit"></Search>
   </div>
 </template>
 <script>
@@ -27,6 +27,11 @@ export default {
         "郑州"
       ]
     };
+  },
+  methods: {
+    handleSubmit(value) {
+      console.log("app submit value", value);
+    }
   }
 };
 </script>

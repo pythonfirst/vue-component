@@ -3,6 +3,9 @@
     <ZInput
       :value="value"
       :placeholder="placeholder"
+      @keydown.up.native.prevent="handleKeyUp"
+      @keydown.down.native.prevent="handleKeyDown"
+      @keydown.enter.native.prevent="handleEnter"
       @input="handleInput"
       @change="handleChange"
       @blur="handleBlur"
@@ -10,6 +13,7 @@
       <i class="iconfont" slot="icon">&#xe62a;</i>
       <Suggestion
         slot="append"
+        :index="index"
         :data="suggestions"
         @select="handleSelect"
       ></Suggestion>
@@ -34,7 +38,8 @@ export default {
   data() {
     return {
       placeholder: "",
-      value: ""
+      value: "",
+      index: null
     };
   },
   created() {
@@ -42,13 +47,32 @@ export default {
       this.suggestions.length !== 0 ? this.suggestions[0] : "请输入";
   },
   methods: {
-    /**
-     * 触发的回调事件
-     */
-    handleSelect(value) {
-      console.log("======触发了select回调事件======", value);
-      this.value = value;
-      this.$emit("select", value);
+    handleKeyUp() {
+      console.log("keyup event", this.index);
+      this.index = this.index > 0 ? this.index - 1 : this.index;
+      this.value = this.suggestions[this.index];
+    },
+    handleKeyDown() {
+      console.log("keydown event", this.index);
+      this.index =
+        this.index < this.suggestions.length - 1 ? this.index + 1 : this.index;
+      this.value = this.suggestions[this.index];
+    },
+    handleEnter() {
+      console.log("enter event", this.index);
+      if (this.$children[0].focused) {
+        this.$children[0].focused = false;
+        this.value = this.suggestions[this.index];
+      }
+      this.submit();
+      this.$emit("enter", this.value);
+    },
+    handleSelect(e) {
+      console.log("======触发了select回调事件======", e);
+      this.value = e.value;
+      this.index = e.index;
+      this.submit();
+      this.$emit("select", e.value);
     },
     handleInput(value) {
       console.log("======触发了input事件======", value);
@@ -59,9 +83,12 @@ export default {
       console.log("======触发了change事件======", this.value);
       this.$emit("change", this.value);
     },
-    handleBlur() {
+    handleBlur(e) {
       console.log("======触发了blur事件======", this.value);
-      this.$emit("blur", this.value);
+      this.$emit("blur", this.value, e);
+    },
+    submit() {
+      this.$emit("submit", this.value);
     }
   }
 };
