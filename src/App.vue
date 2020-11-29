@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <div class="position">占位</div>
     <Search :suggestions="suggestions"></Search>
   </div>
 </template>
@@ -31,9 +30,4 @@ export default {
   }
 };
 </script>
-<style scoped>
-.position {
-  width: 100%;
-  height: 500px;
-}
-</style>
+<style scoped></style>

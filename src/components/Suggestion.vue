@@ -1,7 +1,12 @@
 <template>
   <div class="suggestion">
     <ul class="suggestion-list">
-      <li v-for="item in data" :key="item" @mousedown="handleSelect(item)">
+      <li
+        v-for="(item, index) in data"
+        :key="item"
+        :class="{ highlighted: selectedIndex === index }"
+        @mousedown="handleSelect(item, index)"
+      >
         {{ item }}
       </li>
     </ul>
@@ -17,8 +22,15 @@ export default {
       default: () => []
     }
   },
+  data() {
+    return {
+      selectedIndex: null
+    };
+  },
   methods: {
-    handleSelect(value) {
+    handleSelect(value, index) {
+      console.log("value", value, index);
+      this.selectedIndex = index;
       this.$emit("select", value);
     }
   }
