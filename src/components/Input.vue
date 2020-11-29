@@ -100,7 +100,8 @@ export default {
   height: 40px;
   line-height: 40px;
   outline: none;
-  padding: 0 15px;
+  padding: 0 10px;
+  padding-right: 28px;
   width: 100%;
   cursor: pointer;
 }
