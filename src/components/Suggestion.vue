@@ -73,7 +73,7 @@ export default {
 }
 .suggestion-list li.highlighted,
 .suggestion-list li:hover {
-  background-color: #f5f7fa;
+  background-color: rgb(228, 243, 253);
 }
 .suggestion-list li.divider {
   margin-top: 6px;
