@@ -101,4 +101,8 @@ export default {
 .input::placeholder {
   color: rgb(191, 195, 202);
 }
+.input:focus {
+  outline: none;
+  border-color: #409eff;
+}
 </style>
