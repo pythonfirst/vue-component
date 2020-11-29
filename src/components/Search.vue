@@ -10,7 +10,7 @@
       @change="handleChange"
       @blur="handleBlur"
     >
-      <i class="iconfont" slot="icon">&#xe62a;</i>
+      <i @click="submit" class="iconfont" slot="icon">&#xe62a;</i>
       <Suggestion
         slot="append"
         :index="index"
@@ -60,7 +60,7 @@ export default {
     },
     handleEnter() {
       console.log("enter event", this.index);
-      if (this.$children[0].focused) {
+      if (this.$children[0].focused && this.index) {
         this.$children[0].focused = false;
         this.value = this.suggestions[this.index];
       }
@@ -77,6 +77,7 @@ export default {
     handleInput(value) {
       console.log("======触发了input事件======", value);
       this.value = value;
+      this.index = null;
       this.$emit("input", value);
     },
     handleChange() {
@@ -89,7 +90,7 @@ export default {
     },
     submit() {
       console.log("======触发提交事件======");
-      this.value = "";
+      this.$children[0].focused = false;
       this.$emit("submit", this.value);
     }
   }
@@ -108,6 +109,7 @@ export default {
     url("//at.alicdn.com/t/font_1152678_y3ayb6d4z8.svg#iconfont") format("svg");
 }
 .iconfont {
+  cursor: pointer;
   position: absolute;
   right: -5px;
   top: 50%;

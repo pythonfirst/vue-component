@@ -112,4 +112,6 @@ export default {
   outline: none;
   border-color: #409eff;
 }
+.suffix {
+}
 </style>
