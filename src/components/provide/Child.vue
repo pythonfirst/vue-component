@@ -1,7 +1,11 @@
 <template>
   <div>
     <div>
-      Child message(ractivity){{ this.app.message }}
+      Child message(ractivity-this){{ this.app.message }}
+      <span class="important">通过provide component实例this可以实现响应式</span>
+    </div>
+    <div>
+      Child message(ractivity-observable.state.message){{ this.state.message }}
       <span class="important">通过provide component实例this可以实现响应式</span>
     </div>
     <div>Child message(no-ractivity){{ this.message }}</div>
@@ -14,7 +18,7 @@
 import Button from "../Button";
 export default {
   name: "Child",
-  inject: ["message", "app"],
+  inject: ["message", "app", "state"],
   components: {
     Button
   },
@@ -26,6 +30,7 @@ export default {
   },
   methods: {
     invokeParentMethod() {
+      // this.app.message = 'hello'
       this.app.changeMessage();
     }
   }

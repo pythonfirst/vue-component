@@ -14,25 +14,33 @@
 </template>
 
 <script>
+import Vue from "vue";
 import Child from "./Child";
 import Button from "../Button";
 export default {
   name: "Parent",
   components: { Child, Button },
   provide() {
+    // 注意state为reactivity，只传message不管用
+    this.state = Vue.observable({
+      message: 200
+    });
     return {
       message: this.message,
-      app: this
+      app: this,
+      state: this.state
     };
   },
   data() {
     return {
-      message: "100"
+      message: "100",
+      state: null
     };
   },
   methods: {
     changeMessage() {
       this.message = Math.floor(Math.random() * 100);
+      this.state.message = Math.floor(Math.random() * 100);
     }
   }
 };
