@@ -2,7 +2,7 @@
   <button
     :class="'i-button-' + size"
     :disabled="disabled"
-    style="backgroundColor: yellow; height: 30px;"
+    style="height: 30px;"
     @click="handleClick"
   >
     <slot name="icon"></slot>
@@ -14,7 +14,6 @@
 export default {
   name: "i-button",
   inheritAttrs: false,
-  inject: ["foo"],
   props: {
     size: {
       validator(value) {
@@ -27,15 +26,14 @@ export default {
     }
   },
   created() {
-    console.log(this.$attrs, this.foo);
     this.$on("on-click", function(msg) {
       console.log("msg", msg);
     });
   },
   methods: {
     handleClick(event) {
-      console.log("event", event, this.$parent.$options.name); // 通过this.$parent获取父组件实例及其数据
-      this.$emit("on-click", "hi");
+      // console.log("event", event, this.$parent.$options.name); // 通过this.$parent获取父组件实例及其数据
+      this.$emit("on-click", event);
     }
   }
 };

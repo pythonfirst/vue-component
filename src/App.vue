@@ -1,12 +1,14 @@
 <template>
   <div id="app">
     <Search :suggestions="suggestions" @submit="handleSubmit"></Search>
+    <Parent></Parent>
   </div>
 </template>
 <script>
 import Search from "./components/Search";
+import Parent from "./components/provide/Parent";
 export default {
-  components: { Search },
+  components: { Search, Parent },
   data() {
     return {
       suggestions: [
@@ -35,4 +37,12 @@ export default {
   }
 };
 </script>
-<style scoped></style>
+<style>
+.todo {
+  color: red;
+}
+.important {
+  font-weight: 600;
+  color: #1b7fff;
+}
+</style>

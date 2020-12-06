@@ -1,29 +1,18 @@
 <template>
-  <div class="home">
-    <Input />
-  </div>
+  <div class="home"></div>
 </template>
 
 <script>
-import Input from "../components/Input";
 export default {
   name: "Home",
-  components: {
-    Input
-  },
+  components: {},
   provide() {
     return {
       foo: "foo"
     };
   },
   data() {
-    return {
-      suggestions: [
-        {
-          text: "北京"
-        }
-      ]
-    };
+    return {};
   }
 };
 </script>
